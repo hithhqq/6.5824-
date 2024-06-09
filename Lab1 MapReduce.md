@@ -17,7 +17,7 @@
 
 1. `Map`、`Reduce`任务、`Coordinator`和`Worker`的关系如何? 这些任务(文中此后称为`Task`)与`Worker`是什么关系呢? 是否存在对应关系? 这些对应关系需要记录吗? 通常, 在常见的主从关系中, 主节点需要记录从节点的信息,例如线程id等表名身份的信息, 但在我们的`MapReduce`中却没有这样的必要, 因为`Worker`节点是可以扩容的, 而`Coordinator`与`Worker`之间只有传递`Task`相关信息的需求, 因此`Coordinator`只需要记录`Task`任务的状态即可, `Task`分配给`Worker`后执行可能成功或失败, 因此`Coordinator`还需要维护任务执行的时间信息, 以便在超时后重新分配任务。因此，`Map`、`Reduce`任务、`Coordinator`和`Worker`的关系可以参考下图:
 
-   [![MapReduce_relation](./MapReduce_relation.png)
+   ![MapReduce_relation](./MapReduce_relation.png)
 
    `Worker`可能在不同时间执行不同的`Task`, 也可能什么也不做(初始状态或等候所有`Map Task`完成时可能会闲置)
 
