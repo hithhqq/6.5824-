@@ -8,7 +8,7 @@
 
 KV数据库是位于raft层之上的，或者说我们的kv数据库使用了raft库。客户端（就是代码中的clerk）调用应用层（server）的RPC，应用层收到RPC之后，会调用Start函数，Start函数会立即返回，应用层等待Raft执行完把命令提交到applych channel之后，应用层从中取出命令，开始执行，然后把结果返回给客户端。综上所述，我们可以的到这样的架构图：
 
-![raft-kv](C:\Users\86183\Desktop\raft-kv.png)
+![raft-kv](./raft-kv.png)
 
 ## 3 lab4A
 
